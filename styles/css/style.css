@@ -1,0 +1,48 @@
+@charset "UTF-8";
+/* line 1, ../Documents/Cours/2024 LP MIAW/Dev front avancé/carte/styles/scss/style.scss */
+body {
+  font-family: "Comic Sans MS",serif;
+  padding: 0;
+  margin: 0;
+}
+
+/* line 3, ../Documents/Cours/2024 LP MIAW/Dev front avancé/carte/styles/scss/style.scss */
+body * {
+  padding: 0;
+}
+
+/* line 9, ../Documents/Cours/2024 LP MIAW/Dev front avancé/carte/styles/scss/style.scss */
+header {
+  padding: 0;
+  background-color: #ffffff;
+  z-index: 2;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 4rem;
+}
+
+/* line 17, ../Documents/Cours/2024 LP MIAW/Dev front avancé/carte/styles/scss/style.scss */
+header h1 {
+  padding: 0;
+  margin: 0;
+}
+
+/* line 23, ../Documents/Cours/2024 LP MIAW/Dev front avancé/carte/styles/scss/style.scss */
+footer {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 0;
+  position: absolute;
+  height: 2rem;
+}
+
+/* line 31, ../Documents/Cours/2024 LP MIAW/Dev front avancé/carte/styles/scss/style.scss */
+#map {
+  z-index: 1;
+  width: 100vw;
+  height: calc(100vh - 6rem);
+}
+
+/*# sourceMappingURL=style.css.map */

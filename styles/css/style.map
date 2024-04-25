@@ -1,0 +1,12 @@
+{
+	"version": 3,
+	"file": "style.css",
+	"sources": [
+		"../scss/style.scss"
+	],
+	"sourcesContent": [
+		"body {\r\n  font-family: \"Comic Sans MS\",serif;\r\n  * {\r\n    padding: 0;\r\n  }\r\n  padding: 0;\r\n  margin: 0;\r\n}\r\nheader {\r\n  padding: 0;\r\n  background-color: #ffffff;\r\n  z-index: 2;\r\n  left: 0;\r\n  top: 0;\r\n  width: 100%;\r\n  height: 4rem;\r\n  h1 {\r\n    padding: 0;\r\n    margin: 0;\r\n\r\n  }\r\n}\r\nfooter {\r\n  left: 0;\r\n  bottom: 0;\r\n  width: 100%;\r\n  padding: 0;\r\n  position: absolute;\r\n  height: 2rem;\r\n}\r\n#map{\r\n  z-index: 1;\r\n  width: 100vw;\r\n  height: calc(100vh - 6rem);\r\n}"
+	],
+	"names": [],
+	"mappings": ";;AAAA,AAAA,IAAI,CAAC;EACH,WAAW,EAAE,qBAAqB;EAIlC,OAAO,EAAE,CAAC;EACV,MAAM,EAAE,CAAC;CACV;;;AAPD,AAEE,IAFE,CAEF,CAAC,CAAC;EACA,OAAO,EAAE,CAAC;CACX;;;AAIH,AAAA,MAAM,CAAC;EACL,OAAO,EAAE,CAAC;EACV,gBAAgB,EAAE,OAAO;EACzB,OAAO,EAAE,CAAC;EACV,IAAI,EAAE,CAAC;EACP,GAAG,EAAE,CAAC;EACN,KAAK,EAAE,IAAI;EACX,MAAM,EAAE,IAAI;CAMb;;;AAbD,AAQE,MARI,CAQJ,EAAE,CAAC;EACD,OAAO,EAAE,CAAC;EACV,MAAM,EAAE,CAAC;CAEV;;;AAEH,AAAA,MAAM,CAAC;EACL,IAAI,EAAE,CAAC;EACP,MAAM,EAAE,CAAC;EACT,KAAK,EAAE,IAAI;EACX,OAAO,EAAE,CAAC;EACV,QAAQ,EAAE,QAAQ;EAClB,MAAM,EAAE,IAAI;CACb;;;AACD,AAAA,IAAI,CAAA;EACF,OAAO,EAAE,CAAC;EACV,KAAK,EAAE,KAAK;EACZ,MAAM,EAAE,kBAAkB;CAC3B"
+}

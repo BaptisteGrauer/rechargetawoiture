@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <link rel="stylesheet" href="styles/css/style.css">
+        <link rel="stylesheet" href="scripts/leaflet.css">
+        <script type="text/javascript" src="scripts/leaflet.js"></script>
+        <script type="text/javascript" src="scripts/jquery-3.7.1.min.js"></script>
+    </head>
+    <body>
+        <header>
+            <h1>Rechargetawoiture</h1>
+        </header>
+        <div id="map"></div>
+        <footer>
+            <p>&copy; Baptiste GRAUER 2024</p>
+            <p>Données fournies par le <a href="https://gouv.nc/" target="_blank">Gouvernement de la Nouvelle-Calédonie</a> via <a href="https://data.gouv.nc" target="_blank">data.gouv.nc</a>.</p>
+        </footer>
+        <script type="text/javascript">
+            // https://data.gouv.nc/api/explore/v2.1/catalog/datasets/bornes-de-recharge-pour-vehicules-electriques/records?limit=100
+            var map = L.map('map').setView([-21.5, 166], 8);
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+            // Marqueurs sur la carte
+            bornes = fetch('https://data.gouv.nc/api/explore/v2.1/catalog/datasets/bornes-de-recharge-pour-vehicules-electriques/records?limit=100')
+                .then(response => response.json())
+                .then(data => {
+                    data.results.forEach(borne => {
+                        lat = borne.geo_point_2d.lat;
+                        lon = borne.geo_point_2d.lon;
+                        nom_station = borne.nom_station;
+                        amenageur = borne.nom_amenageur;
+                        adresse_station = borne.adresse_station;
+                        nb_points_charge = borne.nb_points_charge;
+                        L.marker([lat, lon]).addTo(map);
+                    })
+                })
+                .catch(error => {
+                    console.error('Une erreur s\'est produite :', error);
+                });
+
+            // geolocation
+            navigator.geolocation.getCurrentPosition(
+                function (position){
+                console.log(position.coords)
+                    L.marker([position.coords.latitude, position.coords.longitude]).addTo(map)
+            },
+                function (){
+                // Erreurs
+                console.log("Erreur lors de la récupération de la géolocalisation")
+            })
+
+        </script>
+    </body>
+</html>
