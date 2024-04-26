@@ -1,11 +1,14 @@
 body {
-  font-family: "Comic Sans MS",serif;
+  font-family: "Comic Sans MS", serif;
+
   * {
     padding: 0;
   }
+
   padding: 0;
   margin: 0;
 }
+
 header {
   padding: 0;
   background-color: #ffffff;
@@ -14,12 +17,14 @@ header {
   top: 0;
   width: 100%;
   height: 4rem;
+
   h1 {
     padding: 0;
     margin: 0;
 
   }
 }
+
 footer {
   left: 0;
   bottom: 0;
@@ -28,8 +33,25 @@ footer {
   position: absolute;
   height: 2rem;
 }
-#map{
+
+#map {
   z-index: 1;
   width: 100vw;
   height: calc(100vh - 6rem);
+}
+
+#infos {
+  z-index: 2;
+  position: absolute;
+  bottom: 2rem;
+  top: 4rem;
+  background-color: #ffffff;
+  width: 20rem;
+  transition: 0.5s;
+}
+.infos-hidden {
+  left: -20rem;
+}
+.infos-shown {
+  left: 0;
 }
