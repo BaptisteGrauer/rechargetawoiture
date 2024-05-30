@@ -1,83 +1,120 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Rechargetawoiture</title>
-    <link rel="stylesheet" href="styles/css/style.css">
-    <link rel="stylesheet" href="scripts/leaflet.css">
-    <script type="text/javascript" src="scripts/leaflet.js"></script>
-    <script type="text/javascript" src="scripts/jquery-3.7.1.min.js"></script>
-</head>
-<body>
-<header>
-    <h1>Rechargetawoiture</h1>
-</header>
-<div id="map"></div>
-<div id="infos" class="infos-hidden">
-    <div id="infos-close">×</div>
-    <div id="infos-details"></div>
-</div>
-<div id="geoloc"></div>
-<div id="route"></div>
-<footer>
-    <p>&copy; Baptiste GRAUER 2024</p>
-    <p>Données fournies par le <a href="https://gouv.nc/" target="_blank">Gouvernement de la Nouvelle-Calédonie</a> via
-        <a href="https://data.gouv.nc" target="_blank">data.gouv.nc</a>.</p>
-</footer>
-<script type="text/javascript">
-    // https://data.gouv.nc/api/explore/v2.1/catalog/datasets/bornes-de-recharge-pour-vehicules-electriques/records?limit=100
-    var map = L.map('map').setView([-21.5, 166], 8);
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title>Rechargetawoiture</title>
+        <link rel="stylesheet" href="styles/css/style.css">
+        <link rel="stylesheet" href="scripts/leaflet.css">
+        <script type="text/javascript" src="scripts/leaflet.js"></script>
+        <script type="text/javascript" src="scripts/jquery-3.7.1.min.js"></script>
+    </head>
+    <body>
+        <header>
+            <h1>Rechargetawoiture</h1>
+        </header>
+        <main>
+            <div id="map"></div>
+            <div id="infos" class="infos-hidden">
+                <div>
+                    <a href="#" id="infos-close">×</a>
+                    <div id="infos-details"></div>
+                </div>
+            </div>
+            <div id="navigation">
+                <a href="#" id="geoloc"><img src="images/locate.svg" alt="Localisation"></a>
+                <a href="#" id="route"><img src="images/navigation.svg" alt="Localisation"></a>
+            </div>
+        </main>
+        <footer>
+            <a href="#" id="bouton-a-propos" class="a-propos-shown">À propos</a>
+            <div id="a-propos" class="a-propos-hidden">
+                <a href="#" id="a-propos-close">×</a>
+                <div>
+                    <h2>À propos de ce site</h2>
+                    <p>Données fournies par le <a href="https://gouv.nc/" target="_blank">Gouvernement de la
+                        Nouvelle-Calédonie</a> via <a href="https://data.gouv.nc" target="_blank">data.gouv.nc</a>.</p>
+                    <p>Créé par Baptiste GRAUER</p>
+                    <p>Accéder au <a href="https://github.com/BaptisteGrauer/rechargetawoiture" target="_blank">code source</a> du site.</p>
 
-    // Marqueurs sur la carte
-    bornes = fetch('https://data.gouv.nc/api/explore/v2.1/catalog/datasets/bornes-de-recharge-pour-vehicules-electriques/records?limit=100')
-        .then(response => response.json())
-        .then(data => {
-            data.results.forEach(borne => {
-                // Récupère les informations de la borne
-                let lat = borne.geo_point_2d.lat;
-                let lon = borne.geo_point_2d.lon;
-                let nom_station = borne.nom_station;
-                let amenageur = borne.nom_amenageur;
-                let adresse_station = borne.adresse_station;
-                let nb_points_charge = borne.nb_points_charge;
+                </div>
+            </div>
+            </footer>
+        <script type="text/javascript">
+            // https://data.gouv.nc/api/explore/v2.1/catalog/datasets/bornes-de-recharge-pour-vehicules-electriques/records?limit=100
+            var map = L.map('map').setView([-21.5, 166], 8);
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
-                // Ajoute le marqueur sur la carte
-                L.marker([lat, lon]).addTo(map)
+            // Marqueurs sur la carte
+            bornes = fetch('https://data.gouv.nc/api/explore/v2.1/catalog/datasets/bornes-de-recharge-pour-vehicules-electriques/records?limit=100')
+                .then(response => response.json())
+                .then(data => {
+                    data.results.forEach(borne => {
+                        // Récupère les et assigne les informations de chaque marqueur
+                        let lat = borne.geo_point_2d.lat;
+                        let lon = borne.geo_point_2d.lon;
+                        let nom_station = borne.nom_station;
+                        let amenageur = borne.nom_amenageur;
+                        let adresse_station = borne.adresse_station;
+                        let nb_points_charge = borne.nb_points_charge;
 
-                    // Affiche les informations de la borne lors du clic sur le marqueur
-                    .on('click', function () {
-                        $('.details').remove()
-                        $('#infos').addClass("infos-shown").removeClass("infos-hidden");
-                        $('#infos-details')
-                            .append('<div class="details"><h2>' + nom_station + '</h2>' +
-                                '<p>Adresse : ' + adresse_station + '</p>' +
-                                '<p>Nombre de points de charge : ' + nb_points_charge + '</p>' +
-                                '<p>Station aménagée par : ' + amenageur + '</p></div');
+                        // Ajoute le marqueur sur la carte
+                        L.marker([lat, lon]).addTo(map)
+
+                            // Affiche les informations de la borne et zoome vers le marqueur lors du clic sur celui-ci
+                            .on('click', function () {
+                                map.flyTo([lat,lon],18)
+                                $('.details').remove()
+                                $('#infos').addClass("infos-shown").removeClass("infos-hidden");
+                                $('#infos-details')
+                                    .append('<div class="details"><h2>' + nom_station + '</h2>' +
+                                        '<p>Adresse : ' + adresse_station + '</p>' +
+                                        '<p>Nombre de points de charge : ' + nb_points_charge + '</p>' +
+                                        '<p>Station aménagée par : ' + amenageur + '</p></div');
+                            });
                     });
+                })
+
+                // Gestion des erreurs de récupération des données des bornes
+                .catch(error => {
+                    console.error("Une erreur s'est produite : ", error);
+                });
+
+            // Bouton de fermeture du panneau info de la borne
+            $('#infos-close').on('click', function () {
+                $('#infos').removeClass('infos-shown').addClass('infos-hidden');
             });
-        })
-        .catch(error => {
-            console.error('Une erreur s\'est produite :', error);
-        });
 
-    $('#infos-close').on('click', function () {
-        $('#infos').removeClass('infos-shown').addClass('infos-hidden');
-    });
-
-    // geolocation
-    function geoloc() {
-        navigator.geolocation.getCurrentPosition(
-            function (position) {
-                console.log(position.coords)
-                L.marker([position.coords.latitude, position.coords.longitude]).addTo(map)
-            },
-            function () {
-                // Erreurs
-                console.log("Erreur lors de la récupération de la géolocalisation")
+            $('#geoloc').on('click', function (){
+                geoloc()
             })
-    }
 
-</script>
-</body>
+            /**
+             * Récupère la position actuelle de l'utilisateur, y ajoute un marqueur sur la carte et retourne les coordonnées
+             * @return Array
+             */
+            function geoloc() {
+                navigator.geolocation.getCurrentPosition(
+                    function (position) {
+                        console.log(position.coords);
+                        L.marker([position.coords.latitude, position.coords.longitude]).addTo(map).bindPopup("Votre position actuelle");
+                        map.flyTo([position.coords.latitude, position.coords.longitude], 18)
+                        return [position.coords.latitude, position.coords.longitude];
+                    },
+                    function () {
+                        // Erreurs
+                        console.log("Erreur lors de la récupération de la géolocalisation");
+                    });
+            }
+
+            // Panneau et bouton "à propos"
+            $('#bouton-a-propos').on('click',function (){
+                $('#a-propos').removeClass('a-propos-hidden').addClass('a-propos-shown');
+                $('#bouton-a-propos').removeClass('a-propos-shown').addClass('a-propos-hidden');
+            });
+            $('#a-propos-close').on('click',function (){
+                $('#a-propos').removeClass('a-propos-shown').addClass('a-propos-hidden');
+                $('#bouton-a-propos').removeClass('a-propos-hidden').addClass('a-propos-shown');
+            });
+        </script>
+    </body>
 </html>

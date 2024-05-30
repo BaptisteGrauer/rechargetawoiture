@@ -6,64 +6,208 @@ body {
   margin: 0;
 }
 
-/* line 4, ../Documents/Cours/2024 LP MIAW/Dev front avancé/carte/styles/scss/style.scss */
+/* line 5, ../Documents/Cours/2024 LP MIAW/Dev front avancé/carte/styles/scss/style.scss */
 body * {
   padding: 0;
 }
 
-/* line 12, ../Documents/Cours/2024 LP MIAW/Dev front avancé/carte/styles/scss/style.scss */
-header {
-  padding: 0;
-  background-color: #ffffff;
-  z-index: 2;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 4rem;
+/* line 9, ../Documents/Cours/2024 LP MIAW/Dev front avancé/carte/styles/scss/style.scss */
+body #map {
+  z-index: 1;
+  width: 100vw;
+  height: calc(100vh - 4rem);
 }
 
-/* line 21, ../Documents/Cours/2024 LP MIAW/Dev front avancé/carte/styles/scss/style.scss */
+/* line 15, ../Documents/Cours/2024 LP MIAW/Dev front avancé/carte/styles/scss/style.scss */
+body #infos {
+  z-index: 2;
+  position: absolute;
+  top: 4rem;
+  width: calc(25rem - 20px + 1em);
+  padding: 10px;
+  margin: 1em;
+  border-radius: 1em;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+  background-color: #ffffff;
+  transition: 0.5s;
+}
+
+/* line 27, ../Documents/Cours/2024 LP MIAW/Dev front avancé/carte/styles/scss/style.scss */
+body #infos .details {
+  width: calc(25rem - 20px - 2em);
+}
+
+/* line 31, ../Documents/Cours/2024 LP MIAW/Dev front avancé/carte/styles/scss/style.scss */
+body #infos div {
+  position: relative;
+}
+
+/* line 35, ../Documents/Cours/2024 LP MIAW/Dev front avancé/carte/styles/scss/style.scss */
+body #infos h2 {
+  margin-top: 10px;
+}
+
+/* line 40, ../Documents/Cours/2024 LP MIAW/Dev front avancé/carte/styles/scss/style.scss */
+body #infos-close {
+  z-index: 2;
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 1em;
+  width: 1em;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  font-size: 3rem;
+  text-decoration: none;
+  text-align: end;
+}
+
+/* line 55, ../Documents/Cours/2024 LP MIAW/Dev front avancé/carte/styles/scss/style.scss */
+body .infos-hidden {
+  left: -28em;
+}
+
+/* line 59, ../Documents/Cours/2024 LP MIAW/Dev front avancé/carte/styles/scss/style.scss */
+body .infos-shown {
+  left: 0;
+}
+
+/* line 64, ../Documents/Cours/2024 LP MIAW/Dev front avancé/carte/styles/scss/style.scss */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: #ffffff;
+  left: 0;
+  top: 0;
+  width: calc(100% - 20px);
+  height: calc(4rem - 20px);
+}
+
+/* line 75, ../Documents/Cours/2024 LP MIAW/Dev front avancé/carte/styles/scss/style.scss */
 header h1 {
   padding: 0;
   margin: 0;
 }
 
-/* line 28, ../Documents/Cours/2024 LP MIAW/Dev front avancé/carte/styles/scss/style.scss */
+/* line 82, ../Documents/Cours/2024 LP MIAW/Dev front avancé/carte/styles/scss/style.scss */
 footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1;
   left: 0;
   bottom: 0;
-  width: 100%;
+  right: 0;
+  width: calc(100% - 20px);
+  position: absolute;
+  height: 0;
+}
+
+/* line 95, ../Documents/Cours/2024 LP MIAW/Dev front avancé/carte/styles/scss/style.scss */
+footer p {
+  margin: 0;
   padding: 0;
-  position: absolute;
-  height: 2rem;
 }
 
-/* line 37, ../Documents/Cours/2024 LP MIAW/Dev front avancé/carte/styles/scss/style.scss */
-#map {
-  z-index: 1;
-  width: 100vw;
-  height: calc(100vh - 6rem);
-}
-
-/* line 43, ../Documents/Cours/2024 LP MIAW/Dev front avancé/carte/styles/scss/style.scss */
-#infos {
-  z-index: 2;
-  position: absolute;
-  bottom: 2rem;
-  top: 4rem;
+/* line 100, ../Documents/Cours/2024 LP MIAW/Dev front avancé/carte/styles/scss/style.scss */
+footer #bouton-a-propos {
+  transition: 0.3s;
+  position: fixed;
   background-color: #ffffff;
-  width: 20rem;
-  transition: 0.5s;
-}
-
-/* line 52, ../Documents/Cours/2024 LP MIAW/Dev front avancé/carte/styles/scss/style.scss */
-.infos-hidden {
-  left: -20rem;
-}
-
-/* line 55, ../Documents/Cours/2024 LP MIAW/Dev front avancé/carte/styles/scss/style.scss */
-.infos-shown {
   left: 0;
+  margin: 1em;
+  padding: 5px;
+  height: 4.5em;
+  width: 4.5em;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+}
+
+/* line 117, ../Documents/Cours/2024 LP MIAW/Dev front avancé/carte/styles/scss/style.scss */
+footer #a-propos {
+  transition: 0.3s;
+  background-color: #ffffff;
+  z-index: 2;
+  position: fixed;
+  left: 0;
+  margin: 1em;
+  padding: 20px;
+  height: 10em;
+  border-radius: 1em;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+}
+
+/* line 128, ../Documents/Cours/2024 LP MIAW/Dev front avancé/carte/styles/scss/style.scss */
+footer #a-propos h2 {
+  padding: 0;
+  margin: 0;
+}
+
+/* line 132, ../Documents/Cours/2024 LP MIAW/Dev front avancé/carte/styles/scss/style.scss */
+footer #a-propos div {
+  position: relative;
+}
+
+/* line 137, ../Documents/Cours/2024 LP MIAW/Dev front avancé/carte/styles/scss/style.scss */
+footer .a-propos-shown {
+  bottom: 0;
+}
+
+/* line 141, ../Documents/Cours/2024 LP MIAW/Dev front avancé/carte/styles/scss/style.scss */
+footer .a-propos-hidden {
+  bottom: -14em;
+}
+
+/* line 145, ../Documents/Cours/2024 LP MIAW/Dev front avancé/carte/styles/scss/style.scss */
+footer #a-propos-close {
+  position: absolute;
+  z-index: 2;
+  right: 10px;
+  top: 10px;
+  height: 1em;
+  width: 1em;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  font-size: 3rem;
+  text-decoration: none;
+  text-align: end;
+}
+
+/* line 160, ../Documents/Cours/2024 LP MIAW/Dev front avancé/carte/styles/scss/style.scss */
+#navigation {
+  position: fixed;
+  z-index: 2;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/* line 167, ../Documents/Cours/2024 LP MIAW/Dev front avancé/carte/styles/scss/style.scss */
+#navigation a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2rem;
+  width: 2rem;
+  padding: 1rem;
+  background-color: #ffffff;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+}
+
+/* line 177, ../Documents/Cours/2024 LP MIAW/Dev front avancé/carte/styles/scss/style.scss */
+#navigation a img {
+  scale: 150%;
 }
 
 /*# sourceMappingURL=style.css.map */
